@@ -96,57 +96,78 @@ export default function DashboardPage() {
   }, [selectedDog]);
 
   const checkUser = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    try {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
 
-    if (!user) {
+      if (error || !user) {
+        router.push('/login');
+        return;
+      }
+
+      setUser(user);
+      loadDogs(user.id);
+    } catch (err) {
+      console.error('Erro ao verificar usuário:', err);
       router.push('/login');
-      return;
     }
-
-    setUser(user);
-    loadDogs(user.id);
   };
 
   const loadDogs = async (userId: string) => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('dogs')
-      .select('*')
-      .eq('user_id', userId)
-      .order('created_at', { ascending: false });
+    try {
+      const { data, error } = await supabase
+        .from('dogs')
+        .select('*')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false });
 
-    if (data && data.length > 0) {
-      setDogs(data);
-      setSelectedDog(data[0]);
+      if (error) {
+        console.error('Erro ao carregar cachorros:', error);
+      } else if (data && data.length > 0) {
+        setDogs(data);
+        setSelectedDog(data[0]);
+      }
+    } catch (err) {
+      console.error('Erro de conexão:', err);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const loadSessions = async () => {
     if (!selectedDog) return;
 
-    const { data } = await supabase
-      .from('training_sessions')
-      .select('*')
-      .eq('dog_id', selectedDog.id)
-      .order('completed_at', { ascending: false })
-      .limit(10);
+    try {
+      const { data, error } = await supabase
+        .from('training_sessions')
+        .select('*')
+        .eq('dog_id', selectedDog.id)
+        .order('completed_at', { ascending: false })
+        .limit(10);
 
-    if (data) setSessions(data);
+      if (!error && data) setSessions(data);
+    } catch (err) {
+      console.error('Erro ao carregar sessões:', err);
+    }
   };
 
   const loadAchievements = async () => {
     if (!selectedDog) return;
 
-    const { data } = await supabase
-      .from('achievements')
-      .select('*')
-      .eq('dog_id', selectedDog.id)
-      .order('earned_at', { ascending: false });
+    try {
+      const { data, error } = await supabase
+        .from('achievements')
+        .select('*')
+        .eq('dog_id', selectedDog.id)
+        .order('earned_at', { ascending: false });
 
-    if (data) setAchievements(data);
+      if (!error && data) setAchievements(data);
+    } catch (err) {
+      console.error('Erro ao carregar conquistas:', err);
+    }
   };
 
   const handleAddDog = async (e: React.FormEvent) => {
