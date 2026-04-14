@@ -321,15 +321,6 @@ export default function DashboardPage() {
             </h1>
           </div>
           <div className="flex items-center gap-2">
-            <Link href={getTrainingGuideUrl(selectedDog)} target="_blank">
-              <Button variant="outline" size="sm" className="border-purple-300 text-purple-600 hover:bg-purple-50 hidden sm:flex">
-                <BookOpen className="w-4 h-4 mr-2" />
-                Guia {getAgeCategory(selectedDog)}
-              </Button>
-              <Button variant="outline" size="sm" className="border-purple-300 text-purple-600 hover:bg-purple-50 sm:hidden">
-                <BookOpen className="w-4 h-4" />
-              </Button>
-            </Link>
             <span className="text-sm text-gray-600 hidden sm:block">
               {user?.email}
             </span>
