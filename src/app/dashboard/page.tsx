@@ -342,6 +342,61 @@ export default function DashboardPage() {
       </header>
 
       <div className="container mx-auto px-4 py-8">
+
+        {/* Guias de Adestramento por Fase */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-purple-600" />
+            Guias de Adestramento por Fase
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <Link href="/adestramento/filhote" target="_blank">
+              <div className="flex items-center gap-3 p-3 rounded-xl border-2 border-purple-200 bg-purple-50 hover:bg-purple-100 hover:border-purple-400 transition-all cursor-pointer">
+                <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center shrink-0">
+                  <Dog className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="font-bold text-sm text-purple-900">Filhotes</p>
+                  <p className="text-xs text-purple-600">0 – 6 meses</p>
+                </div>
+              </div>
+            </Link>
+            <Link href="/adestramento/jovem" target="_blank">
+              <div className="flex items-center gap-3 p-3 rounded-xl border-2 border-pink-200 bg-pink-50 hover:bg-pink-100 hover:border-pink-400 transition-all cursor-pointer">
+                <div className="w-10 h-10 bg-pink-500 rounded-lg flex items-center justify-center shrink-0">
+                  <TrendingUp className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="font-bold text-sm text-pink-900">Jovens</p>
+                  <p className="text-xs text-pink-600">6m – 1 ano</p>
+                </div>
+              </div>
+            </Link>
+            <Link href="/adestramento/adulto" target="_blank">
+              <div className="flex items-center gap-3 p-3 rounded-xl border-2 border-orange-200 bg-orange-50 hover:bg-orange-100 hover:border-orange-400 transition-all cursor-pointer">
+                <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center shrink-0">
+                  <Trophy className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="font-bold text-sm text-orange-900">Adultos</p>
+                  <p className="text-xs text-orange-600">1 – 7 anos</p>
+                </div>
+              </div>
+            </Link>
+            <Link href="/adestramento/idoso" target="_blank">
+              <div className="flex items-center gap-3 p-3 rounded-xl border-2 border-blue-200 bg-blue-50 hover:bg-blue-100 hover:border-blue-400 transition-all cursor-pointer">
+                <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center shrink-0">
+                  <Sparkles className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="font-bold text-sm text-blue-900">Idosos</p>
+                  <p className="text-xs text-blue-600">7+ anos</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+
         {/* Dogs Selection */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
