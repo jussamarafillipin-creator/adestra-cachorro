@@ -36,8 +36,9 @@ export default function LoginPage() {
 
         if (error) throw error;
 
-        if (data.user) {
-          window.location.href = '/dashboard';
+        if (data.session) {
+          router.refresh();
+          router.push('/dashboard');
         }
       } else {
         // Cadastro
