@@ -98,17 +98,16 @@ export default function DashboardPage() {
   const checkUser = async () => {
     try {
       const {
-        data: { user },
-        error,
-      } = await supabase.auth.getUser();
+        data: { session },
+      } = await supabase.auth.getSession();
 
-      if (error || !user) {
+      if (!session?.user) {
         router.push('/login');
         return;
       }
 
-      setUser(user);
-      loadDogs(user.id);
+      setUser(session.user);
+      loadDogs(session.user.id);
     } catch (err) {
       console.error('Erro ao verificar usuário:', err);
       router.push('/login');
