@@ -159,101 +159,113 @@ export default function Home() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="p-6 text-center hover:shadow-xl transition-all duration-300">
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-20 h-20 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center">
-                <Dog className="w-10 h-10 text-white" />
+          <Link href="/adestramento/filhote" className="group">
+            <Card className="p-6 text-center hover:shadow-xl transition-all duration-300 group-hover:border-purple-300 group-hover:-translate-y-1 h-full cursor-pointer">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Dog className="w-10 h-10 text-white" />
+                </div>
               </div>
-            </div>
-            <h4 className="text-xl font-bold mb-2">Filhotes</h4>
-            <p className="text-sm text-gray-600 mb-4">0-6 meses</p>
-            <ul className="text-left text-sm space-y-2 text-gray-600">
-              <li className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                <span>Socialização</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                <span>Xixi no lugar certo</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                <span>Comandos básicos</span>
-              </li>
-            </ul>
-          </Card>
+              <h4 className="text-xl font-bold mb-2">Filhotes</h4>
+              <p className="text-sm text-gray-600 mb-4">0-6 meses</p>
+              <ul className="text-left text-sm space-y-2 text-gray-600 mb-4">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Socialização</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Xixi no lugar certo</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Comandos básicos</span>
+                </li>
+              </ul>
+              <span className="text-xs text-purple-600 font-semibold group-hover:underline">Ver guia completo →</span>
+            </Card>
+          </Link>
 
-          <Card className="p-6 text-center hover:shadow-xl transition-all duration-300">
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-20 h-20 bg-gradient-to-br from-pink-400 to-pink-600 rounded-full flex items-center justify-center">
-                <Bone className="w-10 h-10 text-white" />
+          <Link href="/adestramento/jovem" className="group">
+            <Card className="p-6 text-center hover:shadow-xl transition-all duration-300 group-hover:border-pink-300 group-hover:-translate-y-1 h-full cursor-pointer">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-20 h-20 bg-pink-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Bone className="w-10 h-10 text-white" />
+                </div>
               </div>
-            </div>
-            <h4 className="text-xl font-bold mb-2">Jovens</h4>
-            <p className="text-sm text-gray-600 mb-4">6 meses - 1 ano</p>
-            <ul className="text-left text-sm space-y-2 text-gray-600">
-              <li className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                <span>Obediência intermediária</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                <span>Controle de impulsos</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                <span>Passeio sem puxar</span>
-              </li>
-            </ul>
-          </Card>
+              <h4 className="text-xl font-bold mb-2">Jovens</h4>
+              <p className="text-sm text-gray-600 mb-4">6 meses - 1 ano</p>
+              <ul className="text-left text-sm space-y-2 text-gray-600 mb-4">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Obediência intermediária</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Controle de impulsos</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Passeio sem puxar</span>
+                </li>
+              </ul>
+              <span className="text-xs text-pink-600 font-semibold group-hover:underline">Ver guia completo →</span>
+            </Card>
+          </Link>
 
-          <Card className="p-6 text-center hover:shadow-xl transition-all duration-300">
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center">
-                <Trophy className="w-10 h-10 text-white" />
+          <Link href="/adestramento/adulto" className="group">
+            <Card className="p-6 text-center hover:shadow-xl transition-all duration-300 group-hover:border-orange-300 group-hover:-translate-y-1 h-full cursor-pointer">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Trophy className="w-10 h-10 text-white" />
+                </div>
               </div>
-            </div>
-            <h4 className="text-xl font-bold mb-2">Adultos</h4>
-            <p className="text-sm text-gray-600 mb-4">1-7 anos</p>
-            <ul className="text-left text-sm space-y-2 text-gray-600">
-              <li className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                <span>Correção comportamental</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                <span>Comandos avançados</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                <span>Estímulo mental</span>
-              </li>
-            </ul>
-          </Card>
+              <h4 className="text-xl font-bold mb-2">Adultos</h4>
+              <p className="text-sm text-gray-600 mb-4">1-7 anos</p>
+              <ul className="text-left text-sm space-y-2 text-gray-600 mb-4">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Correção comportamental</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Comandos avançados</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Estímulo mental</span>
+                </li>
+              </ul>
+              <span className="text-xs text-orange-600 font-semibold group-hover:underline">Ver guia completo →</span>
+            </Card>
+          </Link>
 
-          <Card className="p-6 text-center hover:shadow-xl transition-all duration-300">
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
-                <PawPrint className="w-10 h-10 text-white" />
+          <Link href="/adestramento/idoso" className="group">
+            <Card className="p-6 text-center hover:shadow-xl transition-all duration-300 group-hover:border-blue-300 group-hover:-translate-y-1 h-full cursor-pointer">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <PawPrint className="w-10 h-10 text-white" />
+                </div>
               </div>
-            </div>
-            <h4 className="text-xl font-bold mb-2">Idosos</h4>
-            <p className="text-sm text-gray-600 mb-4">7+ anos</p>
-            <ul className="text-left text-sm space-y-2 text-gray-600">
-              <li className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                <span>Exercícios cognitivos</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                <span>Treinos leves</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                <span>Qualidade de vida</span>
-              </li>
-            </ul>
-          </Card>
+              <h4 className="text-xl font-bold mb-2">Idosos</h4>
+              <p className="text-sm text-gray-600 mb-4">7+ anos</p>
+              <ul className="text-left text-sm space-y-2 text-gray-600 mb-4">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Exercícios cognitivos</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Treinos leves</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Qualidade de vida</span>
+                </li>
+              </ul>
+              <span className="text-xs text-blue-600 font-semibold group-hover:underline">Ver guia completo →</span>
+            </Card>
+          </Link>
         </div>
       </section>
 
