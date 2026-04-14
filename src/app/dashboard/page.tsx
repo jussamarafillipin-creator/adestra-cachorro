@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -19,6 +20,7 @@ import {
   Target,
   Clock,
   Award,
+  BookOpen,
 } from 'lucide-react';
 import {
   Dialog,
@@ -264,6 +266,22 @@ export default function DashboardPage() {
     router.push('/');
   };
 
+  const getTrainingGuideUrl = (dog: Dog | null) => {
+    if (!dog) return '/adestramento/filhote';
+    if (dog.age_months <= 6) return '/adestramento/filhote';
+    if (dog.age_months <= 12) return '/adestramento/jovem';
+    if (dog.age_months <= 84) return '/adestramento/adulto';
+    return '/adestramento/idoso';
+  };
+
+  const getAgeCategory = (dog: Dog | null) => {
+    if (!dog) return 'Filhote';
+    if (dog.age_months <= 6) return 'Filhote';
+    if (dog.age_months <= 12) return 'Jovem';
+    if (dog.age_months <= 84) return 'Adulto';
+    return 'Idoso';
+  };
+
   const calculateStats = () => {
     if (sessions.length === 0) return { avgSuccess: 0, totalMinutes: 0, totalSessions: 0 };
 
@@ -302,7 +320,16 @@ export default function DashboardPage() {
               AdestraCao
             </h1>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <Link href={getTrainingGuideUrl(selectedDog)} target="_blank">
+              <Button variant="outline" size="sm" className="border-purple-300 text-purple-600 hover:bg-purple-50 hidden sm:flex">
+                <BookOpen className="w-4 h-4 mr-2" />
+                Guia {getAgeCategory(selectedDog)}
+              </Button>
+              <Button variant="outline" size="sm" className="border-purple-300 text-purple-600 hover:bg-purple-50 sm:hidden">
+                <BookOpen className="w-4 h-4" />
+              </Button>
+            </Link>
             <span className="text-sm text-gray-600 hidden sm:block">
               {user?.email}
             </span>
@@ -479,6 +506,28 @@ export default function DashboardPage() {
                 <p className="text-sm text-gray-600">Conquistas</p>
               </Card>
             </div>
+
+            {/* Guia de Adestramento */}
+            <Link href={getTrainingGuideUrl(selectedDog)} target="_blank">
+              <Card className="p-4 mb-6 border-2 border-purple-200 bg-purple-50 hover:bg-purple-100 transition-colors cursor-pointer">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center shrink-0">
+                      <BookOpen className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-purple-900">
+                        Guia de Adestramento — {selectedDog?.name} é {getAgeCategory(selectedDog)}
+                      </p>
+                      <p className="text-sm text-purple-700">
+                        Ver exercícios, dicas e técnicas recomendadas para essa fase
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-purple-600 font-semibold text-sm shrink-0 ml-2">Ver guia →</span>
+                </div>
+              </Card>
+            </Link>
 
             {/* Training Sessions */}
             <div className="grid md:grid-cols-2 gap-8">
