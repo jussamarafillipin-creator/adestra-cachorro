@@ -85,7 +85,21 @@ export default function DashboardPage() {
   });
 
   useEffect(() => {
-    checkUser();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (session?.user) {
+          setUser(session.user);
+          loadDogs(session.user.id);
+          setLoading(false);
+        } else if (event === 'INITIAL_SESSION' && !session) {
+          router.push('/login');
+        } else if (event === 'SIGNED_OUT') {
+          router.push('/login');
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
   }, []);
 
   useEffect(() => {
@@ -94,25 +108,6 @@ export default function DashboardPage() {
       loadAchievements();
     }
   }, [selectedDog]);
-
-  const checkUser = async () => {
-    try {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-
-      if (!session?.user) {
-        router.push('/login');
-        return;
-      }
-
-      setUser(session.user);
-      loadDogs(session.user.id);
-    } catch (err) {
-      console.error('Erro ao verificar usuário:', err);
-      router.push('/login');
-    }
-  };
 
   const loadDogs = async (userId: string) => {
     setLoading(true);
