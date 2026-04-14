@@ -562,27 +562,6 @@ export default function DashboardPage() {
               </Card>
             </div>
 
-            {/* Guia de Adestramento */}
-            <Link href={getTrainingGuideUrl(selectedDog)} target="_blank">
-              <Card className="p-4 mb-6 border-2 border-purple-200 bg-purple-50 hover:bg-purple-100 transition-colors cursor-pointer">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center shrink-0">
-                      <BookOpen className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-purple-900">
-                        Guia de Adestramento — {selectedDog?.name} é {getAgeCategory(selectedDog)}
-                      </p>
-                      <p className="text-sm text-purple-700">
-                        Ver exercícios, dicas e técnicas recomendadas para essa fase
-                      </p>
-                    </div>
-                  </div>
-                  <span className="text-purple-600 font-semibold text-sm shrink-0 ml-2">Ver guia →</span>
-                </div>
-              </Card>
-            </Link>
 
             {/* Training Sessions */}
             <div className="grid md:grid-cols-2 gap-8">
