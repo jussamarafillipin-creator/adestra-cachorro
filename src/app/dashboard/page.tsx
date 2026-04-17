@@ -21,6 +21,7 @@ import {
   Clock,
   Award,
   BookOpen,
+  Trash2,
 } from 'lucide-react';
 import {
   Dialog,
@@ -29,6 +30,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import {
   Select,
   SelectContent,
@@ -257,6 +269,18 @@ export default function DashboardPage() {
           icon: '⭐',
         });
         loadAchievements();
+      }
+    }
+  };
+
+  const handleDeleteDog = async (dogId: string) => {
+    const { error } = await supabase.from('dogs').delete().eq('id', dogId);
+
+    if (!error) {
+      const updatedDogs = dogs.filter((d) => d.id !== dogId);
+      setDogs(updatedDogs);
+      if (selectedDog?.id === dogId) {
+        setSelectedDog(updatedDogs.length > 0 ? updatedDogs[0] : null);
       }
     }
   };
@@ -490,17 +514,46 @@ export default function DashboardPage() {
                   }`}
                   onClick={() => setSelectedDog(dog)}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
-                      <Dog className="w-6 h-6 text-white" />
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center shrink-0">
+                        <Dog className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold">{dog.name}</h3>
+                        <p className="text-sm text-gray-600">
+                          {dog.breed} • {Math.floor(dog.age_months / 12)}a{' '}
+                          {dog.age_months % 12}m
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-bold">{dog.name}</h3>
-                      <p className="text-sm text-gray-600">
-                        {dog.breed} • {Math.floor(dog.age_months / 12)}a{' '}
-                        {dog.age_months % 12}m
-                      </p>
-                    </div>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <button
+                          onClick={(e) => e.stopPropagation()}
+                          className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Excluir {dog.name}?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Isso vai excluir permanentemente o perfil de <strong>{dog.name}</strong> e todo o histórico de treinos. Essa ação não pode ser desfeita.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => handleDeleteDog(dog.id)}
+                            className="bg-red-600 hover:bg-red-700"
+                          >
+                            Excluir
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </div>
                 </Card>
               ))}
