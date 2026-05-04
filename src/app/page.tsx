@@ -72,15 +72,12 @@ export default function Home() {
             IA adaptativa que evolui com seu melhor amigo.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Link href="/login">
               <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg px-8 py-6">
                 Criar Plano Personalizado
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-2">
-              Ver Como Funciona
-            </Button>
           </div>
 
           {/* Stats */}
